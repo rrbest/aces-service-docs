@@ -29,10 +29,11 @@ under the License.
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title><%= current_page.data.title || "API Documentation" %></title>
+     <%= favicon_tag 'images/ark-red-favicon.png' %>
+    <title><%= current_page.data.title || "ACES Service API Docs" %></title>
 
     <style>
-      <%= Rouge::Themes::MonokaiSublime.render(:scope => '.highlight') %>
+      <%= Rouge::Themes::Base16.render(:scope => '.highlight') %>
     </style>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
@@ -51,7 +52,7 @@ under the License.
       </span>
     </a>
     <div class="toc-wrapper">
-      <%= image_tag "logo.png", class: 'logo' %>
+      <%= image_tag "ark-red2.png", class: 'logo' %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -72,7 +73,11 @@ under the License.
       <div id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <li>
-            <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content] %>"><%= h1[:content] %></a>
+            <% if h1[:id] == "aces-service-api-docs" %>
+                <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="Get Started">Get Started</a>
+            <% else %>
+                <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:content] %>"><%= h1[:content] %></a>
+            <% end %>
             <% if h1[:children].length > 0 %>
               <ul class="toc-list-h2">
                 <% h1[:children].each do |h2| %>
