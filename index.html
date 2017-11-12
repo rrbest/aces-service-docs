@@ -158,12 +158,37 @@
                 <a href="#api-reference" class="toc-h1 toc-link" data-title="API Reference">API Reference</a>
           </li>
           <li>
-                <a href="#health" class="toc-h1 toc-link" data-title="Health">Health</a>
+                <a href="#get-health-of-node" class="toc-h1 toc-link" data-title="Get Health of node.">Get Health of node.</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-health" class="toc-h2 toc-link" data-title="Get Health">Get Health</a>
+                    <a href="#http-request" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
                   </li>
               </ul>
+          </li>
+          <li>
+                <a href="#get-service-info" class="toc-h1 toc-link" data-title="Get Service Info.">Get Service Info.</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#http-request-2" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+                <a href="#create-service-contract" class="toc-h1 toc-link" data-title="Create Service Contract">Create Service Contract</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#parameters" class="toc-h2 toc-link" data-title="Parameters">Parameters</a>
+                  </li>
+                  <li>
+                    <a href="#schema" class="toc-h2 toc-link" data-title="Schema">Schema</a>
+                  </li>
+                  <li>
+                    <a href="#http-request-3" class="toc-h2 toc-link" data-title="HTTP Request">HTTP Request</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+                <a href="#get-service-contract" class="toc-h1 toc-link" data-title="Get Service Contract.">Get Service Contract.</a>
           </li>
       </div>
     </div>
@@ -398,7 +423,118 @@ breaking client integrations. ACES defines backwards compatible changes as any o
 
 <p>If breaking changes to the Service must be made, the provider needs to launch a new
 version in parallel at a different URL and have clients re-subscribe to the new version URL. </p>
-<h1 id='api-reference'>API Reference</h1><h1 id='health'>Health</h1><h2 id='get-health'>Get Health</h2>
+<h1 id='api-reference'>API Reference</h1><h1 id='get-health-of-node'>Get Health of node.</h1>
+<p><code>shell
+      curl -X GET &#39;http://localhost:8080/status&#39;
+</code>
+      <code>javascript
+      const request = require(&#39;request&#39;);
+      request(
+          &#39;http://localhost:8080/status&#39;, 
+          { json: true }, 
+          (err, res, body) =&gt; {
+            console.log(body.explanation);
+          }
+      );
+</code>
+    Get application health information.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET http://localhost:8080/status</code></p>
+<h1 id='get-service-info'>Get Service Info.</h1><pre class="highlight shell tab-shell"><code>  curl -X GET <span class="s1">'http://localhost:8080/info'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
+  <span class="nx">request</span><span class="p">(</span>
+      <span class="s1">'http://localhost:8080/info'</span><span class="p">,</span> 
+      <span class="p">{</span> <span class="na">json</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span> 
+      <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">.</span><span class="nx">explanation</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">);</span>
+</code></pre>
+<p>Gets Service Info object.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET http://localhost:8080/info</code></p>
+<h1 id='create-service-contract'>Create Service Contract</h1><pre class="highlight shell tab-shell"><code>  curl -X POST <span class="s1">'http://localhost:8080/contracts'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
+  <span class="nx">request</span><span class="p">(</span>
+      <span class="s1">'http://localhost:8080/contracts'</span><span class="p">,</span> 
+      <span class="p">{</span> <span class="na">json</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span> 
+      <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">.</span><span class="nx">explanation</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">);</span>
+</code></pre>
+<p>Creates a new service contract.</p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ContractRequest</td>
+<td>body</td>
+<td>string</td>
+<td>correlationId</td>
+<td>The request to create a new contract.</td>
+</tr>
+</tbody></table>
+<h3 id='schema'>Schema</h3>
+<table><thead>
+<tr>
+<th>Properties</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>correlationId</td>
+<td>string</td>
+<td>Requestor generated globally unique identifier for correleating requests.</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td>array</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST http://localhost:8080/subscriptions/{id}/unsubscribes</code></p>
+<h1 id='get-service-contract'>Get Service Contract.</h1><pre class="highlight shell tab-shell"><code>  curl -X POST <span class="s1">'http://localhost:8080/contracts/{id}'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'request'</span><span class="p">);</span>
+  <span class="nx">request</span><span class="p">(</span>
+      <span class="s1">'http://localhost:8080/contracts/{id}'</span><span class="p">,</span> 
+      <span class="p">{</span> <span class="na">json</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span> 
+      <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">.</span><span class="nx">explanation</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">);</span>
+</code></pre>
+<p>Gets service contract info for a contract.</p>
+
+<p>### Parameters</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>Contract identifier.</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
