@@ -3,19 +3,28 @@
 
 
 # Get Health of node.
-	  ```shell
-	  curl -X GET 'http://localhost:8080/status'
-	  ```
-	  ```javascript
-	  const request = require('request');
-	  request(
-	      'http://localhost:8080/status', 
-	      { json: true }, 
-	      (err, res, body) => {
-	        console.log(body.explanation);
-	      }
-	  );
-	  ```
+
+```shell
+curl -X GET 'http://localhost:8080/status'
+```
+```javascript
+const request = require('request');
+request(
+	'http://localhost:8080/status', 
+	{ json: true }, 
+	(err, res, body) => {
+	console.log(body.explanation);
+	}
+);
+```
+> Returned response:
+
+```json
+{
+	"status": "up"
+}
+```
+
 	Get application health information.
 
 ### HTTP Request
@@ -23,19 +32,33 @@
 
 
 # Get Service Info.
-  ```shell
-  curl -X GET 'http://localhost:8080/info'
-  ```
-  ```javascript
-  const request = require('request');
-  request(
-      'http://localhost:8080/info', 
-      { json: true }, 
-      (err, res, body) => {
-        console.log(body.explanation);
-      }
-  );
-  ```
+```shell
+curl -X GET 'http://localhost:8080/info'
+```
+```javascript
+const request = require('request');
+request(
+    'http://localhost:8080/info', 
+    { json: true }, 
+    (err, res, body) => {
+      console.log(body.explanation);
+    }
+);
+```
+> Returned response:
+
+```json
+{
+	"name":"ACES",
+	"description":"an ACES service",
+	"instructions":"Service usage instructions in markdown format."
+	"capacities":[1, "BTC", "1.00 BTC"],
+	"flatFee":"0.01",
+	"percentageFee":"0.01",
+	"contractSchema:{object},
+	"interfaces":["arkSmartbridgePayable", "arkReturnable"]
+}
+```
 
   Gets Service Info object.
 
@@ -44,20 +67,28 @@
 
 
 # Create Service Contract
-  ```shell
-  curl -X POST 'http://localhost:8080/contracts'
-  ```
+```shell
+curl -X POST 'http://localhost:8080/contracts'
+```
 
-  ```javascript
-  const request = require('request');
-  request(
-      'http://localhost:8080/contracts', 
-      { json: true }, 
-      (err, res, body) => {
-        console.log(body.explanation);
-      }
-  );
-  ```
+```javascript
+const request = require('request');
+request(
+    'http://localhost:8080/contracts', 
+    { json: true }, 
+    (err, res, body) => {
+      console.log(body.explanation);
+    }
+);
+```
+> Returned response:
+
+```json
+{
+	"name":"ACES",
+	"value":{object}
+}
+``` 
 Creates a new service contract.
 
 ### Parameters
@@ -93,6 +124,22 @@ Creates a new service contract.
       }
   );
   ```
+  > Returned response:
+
+```json
+    {
+      "id": "329857298735983",
+      "createdAt": "2017-11-08T05:34:54.267Z",
+      "expiresAt":"2017-12-08T05:34:54.267Z",
+      "correlationId":"1234",
+      "status": "pendingPayment",
+      "results":
+        {
+      	"name":"ACES",
+      	"value": {object}
+      	}
+    }
+```
   Gets service contract info for a contract.
 
   ### Parameters
